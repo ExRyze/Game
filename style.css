@@ -46,9 +46,16 @@ table {
 
 /*  */
 body {
-  height: 100vw;
+  height: 100vh;
   width: 100%;
   position: relative;
+}
+body::-webkit-scrollbar {
+	display: none;
+}
+body {
+-ms-overflow-style: none;  /* IE dan Edge */
+scrollbar-width: none;  /* Firefox */
 }
 
 
@@ -58,4 +65,16 @@ body {
   height: 40px;
   background-color: black;
   position: absolute;
+	z-index: 5;
+}
+
+
+
+/* Obstacle */
+div.obstacle {
+	width: 40px;
+	height: 100%;
+	background-color: green;
+	position: absolute;
+	z-index: 1;
 }
