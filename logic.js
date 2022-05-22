@@ -81,13 +81,14 @@ obstacleLeft();
 // Collision || Tabrakan
 function collision() {
   if (
-    left + userWidth > stacleLeft
+    left + userWidth > stacleLeft &&
+    stacleLeft + obstacleWidth > left &&
+    stacleUp + obstacleHeight > up &&
+    up + userHeight > stacleUp
       ) {
       // collision detected!
-      // user.style.backgroundColor = "green";
       console.log("obstacle");
   } else {
       // no collision
-      // user.style.backgroundColor = "black";
-      console.log(obstacleWidth);
+      console.log(obstacleHeight);
   }};
