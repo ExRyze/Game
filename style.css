@@ -73,7 +73,7 @@ scrollbar-width: none;  /* Firefox */
 /* Obstacle */
 div.obstacle {
 	width: 40px;
-	height: 250px;
+	height: 100vh;
 	background-color: green;
 	position: absolute;
 	z-index: 1;
