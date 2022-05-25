@@ -5,8 +5,8 @@ var obstacle = document.getElementsByClassName("obstacle");
 
 
 // User Possition Movement
-var up = 0;
-var left = 0;
+var up = ($(body).height()+$(user).height())/2;
+var left = 180;
 
 function setUserUp(){
   user.style.top = up+"px"
@@ -14,6 +14,8 @@ function setUserUp(){
 function setUserLeft() {
   user.style.left = left+"px";
 };
+setUserUp();
+setUserLeft();
 
 
 // Collision || Tabrakan
@@ -25,8 +27,8 @@ function collision(Uu, Ul, U, Ou, Ol, O) {
     Uu + $(U).height() > Ou
       ) {
       alert("You are died!");
+      clearInterval(myInterval);
       document. location. reload();
-  } else {
   }
 };
 
@@ -76,7 +78,7 @@ function repeat() {
 };
 
 
-// Movement || Pergerakan
+// User Movement
 // Issue {Saat menggunakan double key dan mau ke singgle key, terkadang tidak mau jalan}
 hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   switch (handler.key) {
@@ -120,6 +122,8 @@ hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   }
 });
 
+
+// Obstacle Movement
 var bodyLeft = 0;
 var speed = 1;
 body.style.left = bodyLeft + "px";
@@ -130,7 +134,6 @@ function keepForward() {
 
   body.style.left = bodyLeft + "px";
   user.style.left = left+"px";
+  repeat();
 }
-setInterval(keepForward, 10);
-
-// Bug : When the user move, collision work, but when the obstackle move, nothing happens.
+var myInterval = setInterval(keepForward, 10);
