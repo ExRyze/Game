@@ -119,3 +119,18 @@ hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
     default: alert(event);
   }
 });
+
+var bodyLeft = 0;
+var speed = 1;
+body.style.left = bodyLeft + "px";
+
+function keepForward() {
+  bodyLeft -= speed;
+  left += speed;
+
+  body.style.left = bodyLeft + "px";
+  user.style.left = left+"px";
+}
+setInterval(keepForward, 10);
+
+// Bug : When the user move, collision work, but when the obstackle move, nothing happens.
