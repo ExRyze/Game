@@ -1,8 +1,7 @@
 // Object
 var body = document.querySelector(".body");
 var user = document.getElementById("user");
-var obstacle = document.getElementById("obstacle");
-var obstacleD = document.getElementById("obstacleDown");
+var obstacle = document.getElementsByClassName("obstacle");
 
 
 // User Possition Movement
@@ -14,86 +13,7 @@ function setUserUp(){
 };
 function setUserLeft() {
   user.style.left = left+"px";
-}
-
-
-// Obstacle
-// var stacleUp = -Math.floor(Math.random() * ($(obstacle).height() - 160)) + 1;
-// var stacleLeft = 400;
-
-// function setObstaclePos(){
-//   obstacle.style.top = stacleUp+"px"
-//   obstacle.style.left = stacleLeft+"px";
-// }
-// function setObstacleHeight(O) {
-//   let Oh = $(O).height() - 160;
-//   obstacle.style.height = Oh +"px";
-// }
-// setObstaclePos();
-// setObstacleHeight(obstacle);
-
-// function setCollision() {
-//   collision(up, left, user, stacleUp, stacleLeft, obstacle);
-// }
-
-
-// Obstacle Down
-// var stacleDUp = stacleUp + $(obstacle).height() + 160;
-
-// function setObstacleDPos(){
-//   obstacleD.style.top = stacleDUp +"px"
-//   obstacleD.style.left = stacleLeft+"px";
-// }
-// setObstacleDPos();
-
-// function setCollisionD() {
-//   collision(up, left, user, stacleDUp, stacleLeft, obstacleD);
-// };
-
-
-// Movement || Pergerakan
-// Issue {Saat menggunakan double key dan mau ke singgle key, terkadang tidak mau jalan}
-hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
-  switch (handler.key) {
-    case 'a': left-=5;
-    setUserLeft();
-      break;
-    case 's': up+=5;
-    setUserUp();
-      break;
-    case 'w': up-=5;
-    setUserUp();
-      break;
-    case 'd': left+=5;
-    setUserLeft();
-      break;
-    case 'a+w': left-=5; up-=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 'a+s': left-=5; up+=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 'd+w': left+=5; up-=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 'd+s': left+=5; up+=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 'w+a': left-=5; up-=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 'w+d': left+=5; up-=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 's+a': left-=5; up+=5;
-    setUserLeft(); setUserUp();
-      break;
-    case 's+d': left+=5; up+=5;
-    setUserLeft(); setUserUp();
-      break;
-    default: alert(event);
-  }
-});
+};
 
 
 // Collision || Tabrakan
@@ -104,125 +24,98 @@ function collision(Uu, Ul, U, Ou, Ol, O) {
     Ou + $(O).height() > Uu &&
     Uu + $(U).height() > Ou
       ) {
-      // collision detected!
-      // alert("You are died!");
-      // document. location. reload();
-      console.log("Obstacle")
+      alert("You are died!");
+      document. location. reload();
   } else {
-      // no collision
-      console.log("Safe")
-  }};
+  }
+};
 
 
 // Reapeating Obstacle
-var score = 4;
+var score = 10;
+var el = [];
+var stacleUp = [];
+var stacleLeft = [];
+var elD = [];
+var stacleDUp = [];
+var setCollision = [];
+
+
 for (let i = 0; i < score; i++) {
-  // Nanti tambahin left dan 
-  var element = $(body).append(document.createElement("header"));
-  var elementD = $(body).append(document.createElement("footer"));
-  var stacleLeft = 400 * (i+1);
+  var header = $(body).append(document.createElement("header"));
+  var footer = $(body).append(document.createElement("footer"));
 
-  function setClassElement(e) {
-    e;
+  header;
+  el[i] = document.querySelectorAll("header")[i];
+  el[i].classList.add("obstacle");
 
-    var el = document.querySelectorAll("header")[i];
-
-    el.classList.add("obstacle");
-
-    var stacleUp = -Math.floor(Math.random() * ($(el).height() - 120)) + 1;
+  var staticUp = -Math.floor(Math.random() * ($(obstacle).height() - 120)) + 1;
+  stacleUp[i] = staticUp;
+  stacleLeft[i] = 400 * (i+1);
   
-    function setObstaclePos(){
-      el.style.top = stacleUp+"px"
-      el.style.left = stacleLeft+"px";
-    }
-    function setObstacleHeight(O) {
-      let Oh = $(O).height() - 160;
-      O.style.height = Oh +"px";
-    }
-    setObstaclePos();
-    setObstacleHeight(el);
+  el[i].style.top = stacleUp[i] + "px"
+  el[i].style.left = stacleLeft[i] + "px";
+  el[i].style.height = $(body).height() - 120 +"px";
 
-    // const setCollisions = []; setCollisions[i] = 
-    function setCollision() {collision(up, left, user, stacleUp, stacleLeft, el);};
-    // setCollision();
+
+  footer;
+  elD[i] = document.querySelectorAll("footer")[i];
+  elD[i].classList.add("obstacle");
+  
+  stacleDUp[i] = staticUp + $(obstacle).height() + 120;
     
-
-    function setClassElementD(eD) {
-      eD;
-  
-      var elD = document.querySelectorAll("footer")[i];
-  
-      elD.classList.add("obstacle");
-  
-      var stacleDUp = stacleUp + $(elD).height() + 120;
-    
-      function setObstacleDPos(){
-        elD.style.top = stacleDUp +"px"
-        elD.style.left = stacleLeft+"px";
-      }
-      setObstacleDPos();
-
-      // const setCollisionDs = []; setCollisionDs[i] = 
-      function setCollisionD() {collision(up, left, user, stacleDUp, stacleLeft, elD);};
-      // setCollisionD();
-    };
-    setClassElementD(elementD);
-  };
-  setClassElement(element);
-
-
-
-  console.log(i);
+  elD[i].style.top = stacleDUp[i] + "px"
+  elD[i].style.left = stacleLeft[i] + "px";
 };
 
-// function repeat() {
-//   for(let i = 0; i < score; i++) {
 
-//   }
-// }
+function repeat() {
+  for(let c = 0; c < score; c++) {
+    collision(up, left, user, stacleUp[c], stacleLeft[c], el[c]); collision(up, left, user, stacleDUp[c], stacleLeft[c], elD[c]);
+  };
+};
 
 
+// Movement || Pergerakan
+// Issue {Saat menggunakan double key dan mau ke singgle key, terkadang tidak mau jalan}
 hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   switch (handler.key) {
-    case 'a':
-    setClassElementD().setCollisionD();
+    case 'a': left-=5;
+    setUserLeft(); repeat();
       break;
-    case 's':
-    setClassElementD().setCollisionD();
+    case 's': up+=5;
+    setUserUp(); repeat();
       break;
-    case 'w':
-    setClassElementD().setCollisionD();
+    case 'w': up-=5;
+    setUserUp(); repeat();
       break;
-    case 'd':
-    setClassElementD().setCollisionD();
+    case 'd': left+=5;
+    setUserLeft(); repeat();
       break;
-    case 'a+w':
-    setClassElementD().setCollisionD();
+    case 'a+w': left-=5; up-=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 'a+s':
-    setClassElementD().setCollisionD();
+    case 'a+s': left-=5; up+=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd+w':
-    setClassElementD().setCollisionD();
+    case 'd+w': left+=5; up-=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd+s':
-    setClassElementD().setCollisionD();
+    case 'd+s': left+=5; up+=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 'w+a':
-    setClassElementD().setCollisionD();
+    case 'w+a': left-=5; up-=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 'w+d':
-    setClassElementD().setCollisionD();
+    case 'w+d': left+=5; up-=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 's+a':
-    setClassElementD().setCollisionD();
+    case 's+a': left-=5; up+=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
-    case 's+d':
-    setClassElementD().setCollisionD();
+    case 's+d': left+=5; up+=5;
+    setUserLeft(); setUserUp(); repeat();
       break;
     default: alert(event);
   }
 });
-
-
-// Critical Issue : the Collision doesn't work !!!
