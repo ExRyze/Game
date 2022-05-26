@@ -34,7 +34,7 @@ function collision(Uu, Ul, U, Ou, Ol, O) {
 
 
 // Reapeating Obstacle
-var score = 10;
+var score = 100;
 var el = [];
 var stacleUp = [];
 var stacleLeft = [];
@@ -80,42 +80,43 @@ function repeat() {
 
 // User Movement
 // Issue {Saat menggunakan double key dan mau ke singgle key, terkadang tidak mau jalan}
+var userSpeed = 4;
 hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   switch (handler.key) {
-    case 'a': left-=5;
+    case 'a': left-=userSpeed;
     setUserLeft(); repeat();
       break;
-    case 's': up+=5;
+    case 's': up+=userSpeed;
     setUserUp(); repeat();
       break;
-    case 'w': up-=5;
+    case 'w': up-=userSpeed;
     setUserUp(); repeat();
       break;
-    case 'd': left+=5;
+    case 'd': left+=userSpeed;
     setUserLeft(); repeat();
       break;
-    case 'a+w': left-=5; up-=5;
+    case 'a+w': left-=userSpeed; up-=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 'a+s': left-=5; up+=5;
+    case 'a+s': left-=userSpeed; up+=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd+w': left+=5; up-=5;
+    case 'd+w': left+=userSpeed; up-=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd+s': left+=5; up+=5;
+    case 'd+s': left+=userSpeed; up+=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 'w+a': left-=5; up-=5;
+    case 'w+a': left-=userSpeed; up-=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 'w+d': left+=5; up-=5;
+    case 'w+d': left+=userSpeed; up-=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 's+a': left-=5; up+=5;
+    case 's+a': left-=userSpeed; up+=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
-    case 's+d': left+=5; up+=5;
+    case 's+d': left+=userSpeed; up+=userSpeed;
     setUserLeft(); setUserUp(); repeat();
       break;
     default: alert(event);
