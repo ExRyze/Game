@@ -28,6 +28,7 @@ function collision(Uu, Ul, U, Ou, Ol, O) {
       ) {
       alert("You are died!");
       clearInterval(myInterval);
+      clearInterval(nonEscape);
       document. location. reload();
   }
 };
@@ -124,7 +125,21 @@ var myInterval = setInterval(keepForward, 10);
 
 
 // Score
+function setScore(Scr) {
+  if(Scr <= 0) {return 0};
+  if(Scr >= 0) {return Scr}
+}
 function setUserScore() {
-  document.querySelector(".score").innerHTML = "Score : " + left;
+  document.querySelector(".score").innerHTML = "Score : " + setScore(Math.floor((left-800)/400));
 }
 setUserScore();
+
+
+// Disabling Escape from Window
+function noEscape() {
+  if(left <= Math.abs(bodyLeft)) {left = Math.abs(bodyLeft); setUserLeft(); setUserScore();};
+  if(up <= 0) {up = 0; setUserUp();};
+  if(up+$(user).height() >= $(body).height()) {up = $(body).height()-$(user).height(); setUserUp();};
+  if(left+$(user).width() >= $(window).width()+Math.abs(bodyLeft)) {left = ($(window).width()+Math.abs(bodyLeft))-$(user).width(); setUserLeft();};
+};
+var nonEscape = setInterval(noEscape, 10);
