@@ -34,7 +34,7 @@ function collision(Uu, Ul, U, Ou, Ol, O) {
 
 
 // Reapeating Obstacle
-var score = 100;
+var score = 50;
 var el = [];
 var stacleUp = [];
 var stacleLeft = [];
@@ -53,7 +53,7 @@ for (let i = 0; i < score; i++) {
 
   var staticUp = -Math.floor(Math.random() * ($(obstacle).height() - 120)) + 1;
   stacleUp[i] = staticUp;
-  stacleLeft[i] = 400 * (i+1);
+  stacleLeft[i] = 800 + (400 * (i+1));
   
   el[i].style.top = stacleUp[i] + "px"
   el[i].style.left = stacleLeft[i] + "px";
@@ -79,45 +79,32 @@ function repeat() {
 
 
 // User Movement
-// Issue {Saat menggunakan double key dan mau ke singgle key, terkadang tidak mau jalan}
 var userSpeed = 4;
 hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   switch (handler.key) {
-    case 'a': left-=userSpeed;
-    setUserLeft(); repeat();
+    case 'a+w': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 's': up+=userSpeed;
-    setUserUp(); repeat();
+    case 'a+s': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'w': up-=userSpeed;
-    setUserUp(); repeat();
+    case 'd+w': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd': left+=userSpeed;
-    setUserLeft(); repeat();
+    case 'd+s': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'a+w': left-=userSpeed; up-=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 'w+a': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'a+s': left-=userSpeed; up+=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 'w+d': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd+w': left+=userSpeed; up-=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 's+a': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'd+s': left+=userSpeed; up+=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 's+d': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
       break;
-    case 'w+a': left-=userSpeed; up-=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 'a': left-=userSpeed; setUserLeft(); repeat();
       break;
-    case 'w+d': left+=userSpeed; up-=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 's': up+=userSpeed; setUserUp(); repeat();
       break;
-    case 's+a': left-=userSpeed; up+=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 'w': up-=userSpeed; setUserUp(); repeat();
       break;
-    case 's+d': left+=userSpeed; up+=userSpeed;
-    setUserLeft(); setUserUp(); repeat();
+    case 'd': left+=userSpeed; setUserLeft(); repeat();
       break;
     default: alert(event);
   }
@@ -131,10 +118,8 @@ body.style.left = bodyLeft + "px";
 
 function keepForward() {
   bodyLeft -= speed;
-  left += speed;
 
   body.style.left = bodyLeft + "px";
-  user.style.left = left+"px";
   repeat();
 }
 var myInterval = setInterval(keepForward, 10);

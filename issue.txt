@@ -1,0 +1,2 @@
+When using double key shortcut and changing to single key shortcut, sometimes can not work.
+When it going to finish, the movement is laggy.
