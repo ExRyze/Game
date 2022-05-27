@@ -42,7 +42,6 @@ var elD = [];
 var stacleDUp = [];
 var setCollision = [];
 
-
 for (let i = 0; i < score; i++) {
   var header = $(body).append(document.createElement("header"));
   var footer = $(body).append(document.createElement("footer"));
@@ -70,7 +69,6 @@ for (let i = 0; i < score; i++) {
   elD[i].style.left = stacleLeft[i] + "px";
 };
 
-
 function repeat() {
   for(let c = 0; c < score; c++) {
     collision(up, left, user, stacleUp[c], stacleLeft[c], el[c]); collision(up, left, user, stacleDUp[c], stacleLeft[c], elD[c]);
@@ -82,29 +80,29 @@ function repeat() {
 var userSpeed = 4;
 hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   switch (handler.key) {
-    case 'a+w': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 'a+w': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 'a+s': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 'a+s': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 'd+w': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 'd+w': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 'd+s': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 'd+s': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 'w+a': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 'w+a': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 'w+d': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 'w+d': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 's+a': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 's+a': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 's+d': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat();
+    case 's+d': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
       break;
-    case 'a': left-=userSpeed; setUserLeft(); repeat();
+    case 'a': left-=userSpeed; setUserLeft(); repeat(); setUserScore();
       break;
-    case 's': up+=userSpeed; setUserUp(); repeat();
+    case 's': up+=userSpeed; setUserUp(); repeat(); setUserScore();
       break;
-    case 'w': up-=userSpeed; setUserUp(); repeat();
+    case 'w': up-=userSpeed; setUserUp(); repeat(); setUserScore();
       break;
-    case 'd': left+=userSpeed; setUserLeft(); repeat();
+    case 'd': left+=userSpeed; setUserLeft(); repeat(); setUserScore();
       break;
     default: alert(event);
   }
@@ -123,3 +121,10 @@ function keepForward() {
   repeat();
 }
 var myInterval = setInterval(keepForward, 10);
+
+
+// Score
+function setUserScore() {
+  document.querySelector(".score").innerHTML = "Score : " + left;
+}
+setUserScore();
