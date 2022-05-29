@@ -1,20 +1,28 @@
 // Object
-var body = document.querySelector(".body");
-var user = document.getElementById("user");
-var obstacle = document.getElementsByClassName("obstacle");
+var body      = document.querySelector(".body");
+    user      = document.getElementById("user");
+    obstacle  = document.getElementsByClassName("obstacle");
+
+
+// Object Properties
+var windowWidth     = $(window).width();
+    bodyHeight      = $(body).height();
+    bodyWidth       = $(body).width();
+    userHeight      = $(user).height();
+    userWidth       = $(user).width();
 
 
 // User Possition Movement
-var up = ($(body).height()+$(user).height())/2;
-var left = 180;
+var userTop   = (bodyHeight + userHeight)/2;
+    userLeft  = 180;
 
-function setUserUp(){
-  user.style.top = up+"px"
+function setUserTop(){
+  user.style.top = userTop+"px"
 };
 function setUserLeft() {
-  user.style.left = left+"px";
+  user.style.left = userLeft+"px";
 };
-setUserUp();
+setUserTop();
 setUserLeft();
 
 
@@ -35,44 +43,44 @@ function collision(Uu, Ul, U, Ou, Ol, O) {
 
 
 // Reapeating Obstacle
-var score = 50;
-var el = [];
-var stacleUp = [];
-var stacleLeft = [];
-var elD = [];
-var stacleDUp = [];
-var setCollision = [];
+var obstacleQuantity  = 50;
+    obstacleHeader    = [];
+    obstacleHTop      = [];
+    obstacleLeft      = [];
+    obstacleFooter    = [];
+    obstacleFTop      = [];
 
-for (let i = 0; i < score; i++) {
+for (let i = 0; i < obstacleQuantity; i++) {
   var header = $(body).append(document.createElement("header"));
-  var footer = $(body).append(document.createElement("footer"));
+      footer = $(body).append(document.createElement("footer"));
 
   header;
-  el[i] = document.querySelectorAll("header")[i];
-  el[i].classList.add("obstacle");
+  obstacleHeader[i] = document.querySelectorAll("header")[i];
+  obstacleHeader[i].classList.add("obstacle");
 
-  var staticUp = -Math.floor(Math.random() * ($(obstacle).height() - 120)) + 1;
-  stacleUp[i] = staticUp;
-  stacleLeft[i] = 800 + (400 * (i+1));
+  var staticUp        = -Math.floor(Math.random() * ($(obstacle).height() - 120)) + 1;
+      obstacleHTop[i] = staticUp;
+      obstacleLeft[i] = 800 + (400 * (i+1));
   
-  el[i].style.top = stacleUp[i] + "px"
-  el[i].style.left = stacleLeft[i] + "px";
-  el[i].style.height = $(body).height() - 120 +"px";
+  obstacleHeader[i].style.top = obstacleHTop[i] + "px"
+  obstacleHeader[i].style.left = obstacleLeft[i] + "px";
+  obstacleHeader[i].style.height = bodyHeight - 120 +"px";
 
 
   footer;
-  elD[i] = document.querySelectorAll("footer")[i];
-  elD[i].classList.add("obstacle");
+  obstacleFooter[i] = document.querySelectorAll("footer")[i];
+  obstacleFooter[i].classList.add("obstacle");
   
-  stacleDUp[i] = staticUp + $(obstacle).height() + 120;
+  obstacleFTop[i]   = staticUp + $(obstacle).height() + 120;
     
-  elD[i].style.top = stacleDUp[i] + "px"
-  elD[i].style.left = stacleLeft[i] + "px";
+  obstacleFooter[i].style.top = obstacleFTop[i] + "px"
+  obstacleFooter[i].style.left = obstacleLeft[i] + "px";
 };
 
 function repeat() {
-  for(let c = 0; c < score; c++) {
-    collision(up, left, user, stacleUp[c], stacleLeft[c], el[c]); collision(up, left, user, stacleDUp[c], stacleLeft[c], elD[c]);
+  for(let c = 0; c < obstacleQuantity; c++) {
+    collision(userTop, userLeft, user, obstacleHTop[c], obstacleLeft[c], obstacleHeader[c]);
+    collision(userTop, userLeft, user, obstacleFTop[c], obstacleLeft[c], obstacleFooter[c]);
   };
 };
 
@@ -81,38 +89,39 @@ function repeat() {
 var userSpeed = 4;
 hotkeys('a,w,s,d,a+w,a+s,d+w,d+s,w+a,w+d,s+a,s+d', function (event, handler){
   switch (handler.key) {
-    case 'a+w': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 'a+w': userLeft-=userSpeed; userTop-=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 'a+s': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 'a+s': userLeft-=userSpeed; userTop+=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 'd+w': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 'd+w': userLeft+=userSpeed; userTop-=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 'd+s': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 'd+s': userLeft+=userSpeed; userTop+=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 'w+a': left-=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 'w+a': userLeft-=userSpeed; userTop-=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 'w+d': left+=userSpeed; up-=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 'w+d': userLeft+=userSpeed; userTop-=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 's+a': left-=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 's+a': userLeft-=userSpeed; userTop+=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 's+d': left+=userSpeed; up+=userSpeed; setUserLeft(); setUserUp(); repeat(); setUserScore();
+    case 's+d': userLeft+=userSpeed; userTop+=userSpeed; setUserLeft(); setUserTop(); repeat(); setUserScore();
       break;
-    case 'a': left-=userSpeed; setUserLeft(); repeat(); setUserScore();
+    case 'a'  : userLeft-=userSpeed;                     setUserLeft();               repeat(); setUserScore();
       break;
-    case 's': up+=userSpeed; setUserUp(); repeat(); setUserScore();
+    case 's'  :                      userTop+=userSpeed;                setUserTop(); repeat(); setUserScore();
       break;
-    case 'w': up-=userSpeed; setUserUp(); repeat(); setUserScore();
+    case 'w'  :                      userTop-=userSpeed;                setUserTop(); repeat(); setUserScore();
       break;
-    case 'd': left+=userSpeed; setUserLeft(); repeat(); setUserScore();
+    case 'd'  : userLeft+=userSpeed;                     setUserLeft();               repeat(); setUserScore();
       break;
-    default: alert(event);
+    default   : alert(event);
   }
 });
 
 
 // Obstacle Movement
-var bodyLeft = 0;
-var speed = 1;
+var bodyLeft  = 0;
+    speed     = 1;
+
 body.style.left = bodyLeft + "px";
 
 function keepForward() {
@@ -130,16 +139,23 @@ function setScore(Scr) {
   if(Scr >= 0) {return Scr}
 }
 function setUserScore() {
-  document.querySelector(".score").innerHTML = "Score : " + setScore(Math.floor((left-800)/400));
+  document.querySelector(".score").innerHTML = "Score : " + setScore(Math.floor((userLeft-800)/400));
 }
 setUserScore();
 
 
 // Disabling Escape from Window
 function noEscape() {
-  if(left <= Math.abs(bodyLeft)) {left = Math.abs(bodyLeft); setUserLeft(); setUserScore();};
-  if(up <= 0) {up = 0; setUserUp();};
-  if(up+$(user).height() >= $(body).height()) {up = $(body).height()-$(user).height(); setUserUp();};
-  if(left+$(user).width() >= $(window).width()+Math.abs(bodyLeft)) {left = ($(window).width()+Math.abs(bodyLeft))-$(user).width(); setUserLeft();};
+  if(userLeft <= Math.abs(bodyLeft))
+    {userLeft = Math.abs(bodyLeft); setUserLeft(); setUserScore();};
+
+  if(userTop <= 0)
+    {userTop = 0; setUserTop();};
+
+  if(userTop + userHeight >= bodyHeight)
+    {userTop = bodyHeight - userHeight; setUserTop();};
+
+  if(userLeft + userWidth >= windowWidth + Math.abs(bodyLeft))
+    {userLeft = (windowWidth + Math.abs(bodyLeft)) - userWidth; setUserLeft();};
 };
 var nonEscape = setInterval(noEscape, 10);
