@@ -159,3 +159,17 @@ function noEscape() {
     {userLeft = (windowWidth + Math.abs(bodyLeft)) - userWidth; setUserLeft();};
 };
 var nonEscape = setInterval(noEscape, 10);
+
+
+// Pause
+var flow = 1;
+function pause() {
+  if(flow === 1) {clearInterval(myInterval)}
+  else {myInterval = setInterval(keepForward, 10); flow += 2;}
+}
+hotkeys('SPACE', function (event, handler){
+  switch (handler.key) {
+    case 'SPACE': pause();  flow -= 1;
+      break;
+  };
+});

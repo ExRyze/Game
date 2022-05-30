@@ -44,6 +44,14 @@ table {
 /* Reset CSS -- End */
 
 
+/* Framework */
+.flexCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
 /*  */
 body {
   height: 100vh;
@@ -92,4 +100,44 @@ body {
 	background-color: white;
 	color: black;
 	z-index: 2;
+}
+
+
+
+/* Lobby */
+.lobby {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.play {
+	width: fit-content;
+	height: fit-content;
+}
+
+.circle {
+	background-color: rgb(193, 193, 0);
+	border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	cursor: pointer;
+}
+
+.circle .subCircle {
+	background-color: green;
+	width: 250px;
+	height: 250px;
+}
+
+.triangle {
+	width: 0;
+	height: 0;
+	border-top: 50px solid transparent;
+	border-left: 100px solid black;
+	border-bottom: 50px solid transparent;
+	position: relative;
+	left: 10px;
 }
